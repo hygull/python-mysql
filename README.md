@@ -27,6 +27,7 @@ Python 2.7.14 :: Anaconda, Inc.
 rishikesh agrawani@DESKTOP-8AATOO4 MINGW64 /d/projects/Python/MySQL (master)
 $ mysql --version
 D:\projects\MySQL\mysql-5.7.21-winx64\mysql-5.7.21-winx64\bin\mysql.exe  Ver 14.14 Distrib 5.7.21, for Win64 (x86_64)
+
 ```
 
 ### MySQL-python 1.2.3 for Windows and Python 2.7, 32bit and 64bit versions
@@ -65,6 +66,7 @@ USER = "rishikesh"
 PASSWORD = "rishikesh@321"
 
 DATABASE = "nodejs"
+
 ``` 
 
 Create `01_connection.py` and paste the following code.
@@ -99,6 +101,7 @@ else:
 	print "Successfully connected to DATABASE"
 finally:
 	db.close()
+
 ```
 
 Run `01_connection.py` as follows as I ran using GIT bash terminal.
@@ -109,6 +112,7 @@ $ python 01_connection.py
 5.7.21
 <type 'str'>
 Successfully connected to DATABASE
+
 ```
 
 Now lets try another example related to getting/extracting table data.
@@ -167,6 +171,7 @@ mysql> SELECT * FROM `users`;
 5 rows in set (0.00 sec)
 
 mysql>
+
 ```
 
 Now create another file named `02_get_users.py` and paste the below code.
@@ -210,6 +215,7 @@ else:
 	print "Successfully fetched users from MySQL DATABASE"
 finally:
 	db.close()
+
 ```
 
 Finally execute the code as I executed using GIT bash as follows.
@@ -234,6 +240,73 @@ $ python 02_get_users.py
 +--------------------------------+
 8 columns
 Successfully fetched users from MySQL DATABASE
+
+```
+
+Let us insert 1 more record into the `users` table.
+
+Create a file named `03_insert_user.py` and paste the below code on it.
+
+```python
+"""
+	{
+		"createdOn": "19 FEB 2018",
+		"aim": "Inserting user into users table",
+		"createdBy": "Rishikesh Agrawani",
+		"note": "Do not forget to commit"
+	}
+"""
+import MySQLdb
+import config
+
+try:
+	connection_config = [config.HOST, config.USER, config.PASSWORD, \
+		config.DATABASE
+	]
+
+	db = MySQLdb.connect(*connection_config)
+	cursor = db.cursor()
+
+	query = "INSERT INTO `users` (fullname, email, contact, address, password \
+		) VALUES ('Hemkesh Agrawani', 'hemkesh.agrawani@gmail.com', '7898869706', 'Raipur, CG', 'hemkesh@321')";
+
+	cursor.execute(query)
+	db.commit()
+except Exception as err:
+	print "Error:- ", err
+	db.rollback()
+else:
+	print "Successfully inserted user into users table"
+finally:
+	db.close()
+
+```
+
+After running the above code I got the o/p as follows on Terminal.
+
+```bash
+rishikesh agrawani@DESKTOP-8AATOO4 MINGW64 /d/projects/Python/MySQL/examples (master)
+$ python 03_insert_user.py
+Successfully inserted user into users table
+
+rishikesh agrawani@DESKTOP-8AATOO4 MINGW64 /d/projects/Python/MySQL/examples (master)
+$ python 02_get_users.py
++--------------------------------+
+| rob.pike@gmail.com             |
++--------------------------------+
+| robert.griesemer@gmail.com     |
++--------------------------------+
+| ken.thompson@gmail.com         |
++--------------------------------+
+| tkinter.tk@gmail.com           |
++--------------------------------+
+| mysql.db@gmail.com             |
++--------------------------------+
+| hemkesh.agrawani@gmail.com     |
++--------------------------------+
+8 columns
+Successfully fetched users from MySQL DATABASE
+
 ```
 
 Enjoy more examples related to `post`/`INSERT`, `get`/`SELECT`, `put`/`UPDATE`, `delete`/`DELETE` etc. and many other operations.
