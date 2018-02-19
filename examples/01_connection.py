@@ -1,3 +1,11 @@
+"""
+	{
+		"createdOn": "17 FEB 2018",
+		"aim": "Connecting to MySQL database",
+		"createdBy": "Rishikesh Agrawani"
+	}
+"""
+
 import MySQLdb
 import config
 
