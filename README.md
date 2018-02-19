@@ -268,7 +268,8 @@ try:
 	cursor = db.cursor()
 
 	query = "INSERT INTO `users` (fullname, email, contact, address, password \
-		) VALUES ('Hemkesh Agrawani', 'hemkesh.agrawani@gmail.com', '7898869706', 'Raipur, CG', 'hemkesh@321')";
+		) VALUES ('Hemkesh Agrawani', 'hemkesh.agrawani@gmail.com', \
+		'7898869706', 'Raipur, CG', 'hemkesh@321')";
 
 	cursor.execute(query)
 	db.commit()
