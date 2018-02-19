@@ -8,7 +8,7 @@ Windows 10 pro, 64-bit
 
 ### Python version
 
-Python 2.7.14 :: Anaconda, Inc.
+Python 2.7.14 :: Anaconda, Inc.(64-bit)
 
 ### MySQL version
 
@@ -31,9 +31,23 @@ D:\projects\MySQL\mysql-5.7.21-winx64\mysql-5.7.21-winx64\bin\mysql.exe  Ver 14.
 
 ### MySQL-python 1.2.3 for Windows and Python 2.7, 32bit and 64bit versions
 
-Visit [http://www.codegood.com/archives/129](http://www.codegood.com/archives/129) and download [MySQL-python-1.2.3.win-amd64-py2.7.exe](MySQL-python-1.2.3.win-amd64-py2.7.exe).
+Visit [http://www.codegood.com/archives/129](http://www.codegood.com/archives/129) and download [MySQL-python-1.2.3.win-amd64-py2.7.exe](MySQL-python-1.2.3.win-amd64-py2.7.exe) as I have 64-bit Python 2.7.14.
+
+If you have 32-bit Python installed then you will need to download and install 
+[MySQL-python-1.2.3.win32-py2.7.exe](MySQL-python-1.2.3.win32-py2.7.exe).
+
+If you want different versions then you can visit [http://www.codegood.com/downloads](http://www.codegood.com/downloads) and download according to your choice.
 
 Install it as it is required for installing MySQLdb package of Python.
+
+### Still I'm facing problems
+
+Still you can face problems while running Python programs using `MySQLdb` package if your Windows OS is missing some `dll files`. 
+
+I was facing the issue because my Windows machine was not having `MSVCR120.dll` 
+ & `MSVCP120.dll.` files. I downloaded these from [http://www.dlldownloader.com/msvcr120-dll/](http://www.dlldownloader.com/msvcr120-dll/) page and [http://www.dlldownloader.com/msvcp120-dll/](http://www.dlldownloader.com/msvcp120-dll/) respectively & installed.
+
+Now I was ok/satisfied with my System setup and requirements. So let us move now.
 
 ### Getting started
 
@@ -89,7 +103,7 @@ finally:
 
 Run `01_connection.py` as follows as I ran using GIT bash terminal.
 
-```python
+```bash
 rishikesh agrawani@DESKTOP-8AATOO4 MINGW64 /d/projects/Python/MySQL/examples (master)
 $ python 01_connection.py
 5.7.21
@@ -102,6 +116,29 @@ Now lets try another example related to getting/extracting table data.
 Make sure you have `nodejs` database and `users` table with follwing table structure.
 
 ```mysql
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| nodejs             |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> use nodejs
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_nodejs |
++------------------+
+| posts            |
+| users            |
++------------------+
+2 rows in set (0.00 sec)
+
 mysql> DESC users;
 +------------+-------------+------+-----+-------------------+-----------------------------+
 | Field      | Type        | Null | Key | Default           | Extra                       |
@@ -166,7 +203,7 @@ try:
 		print "| %-30s |" % row[2]
 	print shore
 
-	print len(row1)
+	print str(len(row1)) + " columns"
 except Exception as err:
 	print "Error:- ", err
 else:
@@ -195,9 +232,10 @@ $ python 02_get_users.py
 +--------------------------------+
 | mysql.db@gmail.com             |
 +--------------------------------+
-8
+8 columns
 Successfully fetched users from MySQL DATABASE
 ```
 
-Enjoy more examples related to `update`, `delete`, `create`, `get`.
+Enjoy more examples related to `post`/`INSERT`, `get`/`SELECT`, `put`/`UPDATE`, `delete`/`DELETE` etc. and many other operations.
+
 

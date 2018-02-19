@@ -29,7 +29,7 @@ try:
 		print "| %-30s |" % row[2]
 	print shore
 
-	print len(row1)
+	print str(len(row1)) + " columns"
 except Exception as err:
 	print "Error:- ", err
 else:
